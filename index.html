@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Images</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="back"></div>
+<div class="container"></div>
+<script>
+    function animateImg() {
+        var fps = 60;
+        var back = document.getElementsByClassName('back')[0];
+        back.style.display = 'block';
+        var image = document.createElement('div');
+        image.className = 'image';
+        back.appendChild(image);
+        image.style.opacity = 0;
+        back.style.opacity = 0;
+        document.body.appendChild(back);
+        var timerShow = setInterval(showImg, 1000 / fps);
+
+        var ii = 0;
+
+        function showImg() {
+            if (image.style.opacity < 1.0) {
+                image.style.opacity = ii * 0.1;
+                if (back.style.opacity < 0.6) {
+                    back.style.opacity = ii * 0.1;
+                }
+                ii++;
+            } else {
+                clearInterval(timerShow);
+//                console.log('shown');
+            }
+        }
+
+        image.onclick = function (event) {
+           //some click action
+            event.cancelBubble = true;
+            if (event.stopPropagation) event.stopPropagation();
+        };
+
+        back.onclick = function () {
+            var img = this.children[0];
+            var timer = setInterval(hide, 1000 / fps);
+
+            function hide() {
+                if (img.style.opacity > 0) {
+                    img.style.opacity -= 0.1;
+                    if (back.style.opacity > 0) {
+                        back.style.opacity -= 0.1;
+                    }
+                } else {
+//                    console.log('close');
+                    clearInterval(timer);
+                    back.style.display = 'none';
+                    img.remove();
+                }
+            }
+        };
+    }
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+        console.log(event);
+        var containers = document.getElementsByClassName('container');
+        for (var i = 0; i < containers.length; i++) {
+            var container = containers[i];
+            container.onclick = function () {
+                animateImg(this, 800, 600, 1);
+            }
+        }
+    });
+
+
+    /*var fps = 50; // 50 кадров в секунду
+     var timer = setInterval(function() {
+     if (время вышло) clearInterval(timer);
+     else немного увеличить left
+     }, 1000 / fps)*/
+</script>
+</body>
+</html>

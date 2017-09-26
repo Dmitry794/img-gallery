@@ -1,0 +1,32 @@
+.container {
+    height: 50px;
+    width: 70px;
+    background-color: #86d88d;
+    border: 1px solid #9fb3d8;
+    cursor: pointer;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+}
+
+.image {
+    position: absolute;
+    left:100px;
+    top: 100px;
+    height: 400px;
+    width: 600px;
+    background-color: #d8d8d8;
+    border: 3px solid #ffffff;
+    border-radius:5px;
+}
+
+.back {
+    position: absolute;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    opacity:0.8;
+    display: none;
+    background-color: black;
+}
